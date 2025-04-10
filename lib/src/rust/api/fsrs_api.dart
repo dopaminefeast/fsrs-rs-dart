@@ -20,18 +20,20 @@ abstract class Fsrs implements RustOpaqueInterface {
 
   MemoryState memoryState({required FsrsItem item, MemoryState? startingState});
 
-  MemoryState memoryStateFromSm2(
-      {required double easeFactor,
-      required double interval,
-      required double sm2Retention});
+  MemoryState memoryStateFromSm2({
+    required double easeFactor,
+    required double interval,
+    required double sm2Retention,
+  });
 
   factory Fsrs({required List<double> parameters}) =>
       RustLib.instance.api.crateApiFsrsApiFsrsNew(parameters: parameters);
 
-  NextStates nextStates(
-      {MemoryState? currentMemoryState,
-      required double desiredRetention,
-      required int daysElapsed});
+  NextStates nextStates({
+    MemoryState? currentMemoryState,
+    required double desiredRetention,
+    required int daysElapsed,
+  });
 
   String toString();
 }
@@ -52,9 +54,10 @@ abstract class FsrsItem implements RustOpaqueInterface {
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<FSRSReview>>
 abstract class FsrsReview implements RustOpaqueInterface {
-  factory FsrsReview({required int rating, required int deltaT}) =>
-      RustLib.instance.api
-          .crateApiFsrsApiFsrsReviewNew(rating: rating, deltaT: deltaT);
+  factory FsrsReview({required int rating, required int deltaT}) => RustLib
+      .instance
+      .api
+      .crateApiFsrsApiFsrsReviewNew(rating: rating, deltaT: deltaT);
 
   String toString();
 }
@@ -70,10 +73,13 @@ abstract class ItemState implements RustOpaqueInterface {
 
 // Rust type: RustOpaqueMoi<flutter_rust_bridge::for_generated::RustAutoOpaqueInner<MemoryState>>
 abstract class MemoryState implements RustOpaqueInterface {
-  factory MemoryState(
-          {required double stability, required double difficulty}) =>
-      RustLib.instance.api.crateApiFsrsApiMemoryStateNew(
-          stability: stability, difficulty: difficulty);
+  factory MemoryState({
+    required double stability,
+    required double difficulty,
+  }) => RustLib.instance.api.crateApiFsrsApiMemoryStateNew(
+    stability: stability,
+    difficulty: difficulty,
+  );
 
   String toString();
 }
@@ -98,9 +104,7 @@ class F32Array19 extends NonGrowableListView<double> {
   Float32List get inner => _inner;
   final Float32List _inner;
 
-  F32Array19(this._inner)
-      : assert(_inner.length == arraySize),
-        super(_inner);
+  F32Array19(this._inner) : assert(_inner.length == arraySize), super(_inner);
 
   F32Array19.init() : this(Float32List(arraySize));
 }
